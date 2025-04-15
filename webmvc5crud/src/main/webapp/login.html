@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MVC 패턴을 이용한 로그인</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnLogin").onclick = loginFunc;
+	document.querySelector("#btnInsert").onclick = insertFunc;
+}
+
+function loginFunc() {
+	if(document.frm.userid.value === "") {
+		alert("아이디를 입력해주세요")
+		document.frm.userid.focus();
+		return false;
+	}else if(document.frm.password.value === "") {
+		alert("비밀번호를 입력해주세요")
+		document.frm.password.focus();
+		return false;
+	}
+	document.frm.action="login.m2";
+	document.frm.submit();
+}
+function insertFunc() {
+	document.frm.action="insert.html";
+	document.frm.submit();
+}
+</script>
+</head>
+<body>
+<form name="frm" method="post">
+아이디 <input type="text" name="userid"><br>
+비밀번호 <input type="password" name="password"><br>
+<input type="button" value="로 그 인" id="btnLogin">
+<input type="button" value="회 원 가 입" id="btnInsert">
+</form>
+</body>
+</html>
