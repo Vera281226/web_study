@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>get</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnOk").onclick = Getfunc
+}
+function Getfunc() {
+	// 오류 검사 생략
+	frmGet.submit();
+	// http://localhost/web3servlet/GetDataServlet?name=oscar&age=24 논리적 요청명과 물리적 파일명은 다르다 주소는 논리적 요청이다.	
+}
+</script>
+</head>
+<body>
+<!-- get 요청 처리 방식을 잘못 처리하면 405 에러가 발생한다 -->
+<form action="GetDataServlet" method="get" name="frmGet">
+	<div>
+	이름 : <input type="text" name="name" size="10" value="oscar"><br>
+	나이 : <input type="text" name="age" size="3" value="24"><br>
+	</div>
+	<br>
+	<input type="button" id="btnOk" value="자료 전송">
+</form><br>
+<a href="GetDataServlet?name=tom&age=23">자료 전송2</a>
+</body>
+</html>

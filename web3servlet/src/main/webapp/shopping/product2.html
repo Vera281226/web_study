@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("btnOk").onclick = function() {
+		frm.submit();
+	}
+}
+</script>
+</head>
+<body>
+<table>
+	<tr>
+		<td><img src="../images/jepum2.jpg" width="80%" title="세일"></td>
+		<td>
+		<pre>
+시디즈
+시디즈 T50 컴퓨터 책상 의자 HF 방문설치
+203개 상품평
+5% 274,000원 
+259,000원
+
+		</pre>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		<form action="../CartServlet" name="frm" method="post"> <!-- 서블릿은 무조건 현재 컨텍스트 루트에서 찾는다 ../ -->
+			<input type="hidden" name="name" value="시디즈 T50 컴퓨터 책상 의자 HF 방문설치">
+			<input type="hidden" name="price" value="259000"> <!-- 가져갈 값에 콤마는 제거해준다 -->
+			<input type="button" id="btnOk" value="장바구니에 담기">
+			<input type="button" value="홈페이지로 이동" onclick="history.back()"> <!-- 이전화면 -->
+		</form>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
