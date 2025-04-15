@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>레이아웃 연습</title>
+<style type="text/css">
+body{
+	width: 95%; /* 전체 페이지 너비를 비율로 설정 */
+	margin: 0 auto; /* 페이지를 화면 중앙에 배치 */
+}
+h2#title { 
+	text-align: center;
+	border-bottom: 2px dashed black;
+	padding-bottom: 10px;
+}
+ul {
+	list-style: none; /* 목록 스타일 제거 */
+	padding: 0; /* 내부 여백 제거 */
+	margin: 0;  /* 외부 여백 제거 */
+}
+
+li a{
+	display: block; /* 링크를 블록 요소로 설정 */
+}
+.head {
+	border: 1px solid red;
+	width: 100%;
+	overflow:auto; /* 콘텐츠의 내용이 넘칠 경우 자동으로 스크롤바 추가 */
+	padding: 10px;
+	box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 설정 */
+}
+
+.head ul{
+ 	display: flex; /* flex box 레이아웃 설정 */
+ 	justify-content: center; /* 항목을 중앙에 배치 */
+ 	gap : 10px;
+}
+
+nav {
+	float: left; /* 왼쪽으로 정렬하여 플로팅 */
+	width: 20%
+}
+#contents {
+	float: left;
+	width:55%;
+}
+#ad{
+	float: left;
+	width: 25%;
+	text-align: center;
+	font-size: 0.8em;
+}
+
+footer{
+	clear: both; /* 플로팅 해제 */
+	text-align: center;
+	margin-top: 20px;
+}
+</style>
+</head>
+<body>
+<h2 id="title">CSS로 화면 구조 설정 연습</h2>
+<header>
+	<h3>여기는 머리글</h3>
+	<div class="head">
+		<ul>
+			<li class="go_site"><a href="https://www.naver.com" >네이버</a></li>
+			<li class="go_site"><a href="https://www.daum.net" >다음</a></li>
+			<li class="go_site"><a href="https://www.korea.com" >코리아</a></li>
+		</ul>
+	</div>
+</header>
+<nav>
+	<h3>항목 선택</h3>
+	<ul>
+			<li>메인</li>
+			<li>자동차</li><li>반도체</li><li>배터리</li><li>조선</li>
+	</ul>
+</nav>
+
+<div id="contents">
+		<h3>핫 이슈 (본문)</h3>
+		<p>
+		경북 청송군에서 10년 넘게 사과 농사를 지어온 농부 김모 씨는 최근 과수원 재배 체계를 완전히 바꿨다며 이 같이 말했다.
+		미세 살수 시스템, 그늘막 설치 등 자동화 장치를 도입하고 수확 시기 인력도 기존 10명에서 2명으로 대폭 줄였다.
+		김 씨뿐 아니라 주변 농가들도 비슷한 변화를 겪고 있다.
+		그는 “몇 년새 이상고온으로 과일 품질을 유지하기가 어려워졌다.
+		노력에 비해 수입은 변변치 못해 내린 결정”이라며 “올 여름은 또 얼마나 뜨거울지 벌써부터 걱정”이라고 토로했다.
+		</p>
+</div>
+
+<div id="ad">
+	<h3>광고</h3>
+	<ol>
+	<li>현대</li><li>삼성</li><li>엘지</li>
+	</ol>
+</div>
+
+<footer>
+	<b>바닥글</b>
+</footer>
+</body>
+</html>

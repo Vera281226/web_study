@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>표 연습</title>
+</head>
+<body>
+테이블 태그로 표 만들기<p/>
+<table border="1"> <!-- 테이블 안의 내용들의 글자 길이에 따라 자동으로 크기 조절됨 -->
+	<caption>표 연습</caption>
+	<tr>
+		<th>번호</th><th>이름</th><th>주소</th> <!-- <th> 표의 속성들 표현 기본 글자 굵게 -->
+	</tr>
+	<tr>
+		<td>1</td><td><b>신기해</b></td><td>강남구 역삼1동 123</td>	<!-- <td> 표의 기본 내용들 기본 글자 왼쪽 정렬 -->
+	</tr>
+		<tr>
+		<td>2</td><td><i>신기루</i></td><td>역삼3동 56</td>	
+	</tr>
+</table><br>
+<!-- 테이블은 자료만 입력하고 꾸미기는 CSS를 사용하도록 한다 border도 안써도 된다 -->
+<table border="1">
+<tr><td>상품명</td><td>수량</td><td>이미지</td></tr>
+<tr><td>커피와플</td><td>3</td><td><img src="images/1.jpg" width="100"></img></td></tr>
+<tr><td>칫솔</td><td>12</td><td><img src="images/5.jpg" width="100"></img></td></tr>
+</table><br>
+테이블 열(colspan), 행(rowspan) 병합
+<table border="1">
+	<tr><td width="50" colspan="2">a</td><td>b</td><td rowspan="2">c</td></tr>
+	<tr><td>d</td><td>e</td><td>f</td></tr>
+</table><br>
+<table border="1">
+	<tr><td rowspan="2">과목</td><td colspan="3">학년</td></tr>
+	<tr><td>1학년</td><td>2학년</td><td>3학년</td>
+	</tr>
+	<tr>
+		<td>국어</td><td>90</td><td>80</td><td>70</td>
+	</tr>
+	<tr>
+		<td>영어</td><td>80</td><td>80</td><td>70</td>
+	</tr>
+</table>
+</body>
+</html>

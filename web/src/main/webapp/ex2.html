@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지 링크</title>
+</head>
+<body>
+<h3>이미지 읽기</h3><br>
+<img alt="와플과 커피" title="good" src="images/1.jpg" align="left" width="400">
+<!-- alt="이미지가 보이지 않을때 나오는 텍스트 설명" title="이미지 툴팁" 메시지 align="사진 위치 지정"(기본값 left) 
+	 width="너비 조정"(고정값이나 비율(모바일이나 반응형 웹에 쓰임)) -->
+<img alt="손흥민" title="다른 사이트 이미지" src="https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202502/25/spotvnews/20250225083405565marb.jpg" width="400">
+<hr>
+a(Anchor) 태그 : hyper link 연습<br>
+<a href="ex.html">ex1 문서</a><br> 
+<a href="ex.html" target="_blank">ex1 문서</a><br> 
+<a href="ex.html" target="_new">ex1 문서</a><br>
+<!-- 기본은 덮어쓰기(기본값 target="_self") target="_blank"는 무조건 새창 target="_new"는 새창 생성 및 해당 새창 지속 사용 -->
+<a href="https://www.kbs.co.kr" target="_blank"> KBS 페이지 보기</a><br> 
+<a href="my/mbc.html"> my 폴더내의 mbc 문서 보기</a><br> 
+<a href="my/our/sbs.html"> my 폴더내의 our 폴더 내의 sbs 파일 보기</a><br>
+<a href="ex.html"> <img src="images/3.jpg" width="150" height="200" /></a><br>
+<a href="test.txt">텍스트 문서</a><br>
+<a href="test2.xls" target="_blank">엑셀 문서</a><br>
+<a href="mailto:dkwktod@naver.com">친구에게 메일전송</a>
+<hr>
+frame 추가 (하나의 frame은 하나의 html로 표현되는 공간이다)<br>
+<a href="https://www.korea.com" target="tiger">코리아</a>
+<a href="https://www.daum.net" target="tiger">다음</a>
+<iframe src="ex.html" width="100%" height="200" name="tiger"></iframe><br>
+</body>
+</html>
