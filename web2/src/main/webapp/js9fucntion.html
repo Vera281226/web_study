@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>사용자 정의 함수 작성</title>
+<script type="text/javascript">
+// 함수는 head tag 에서 선언 후 body에서 필요할때 호출하는 것이 일반적
+function bb() {
+	document.write("bb 함수 실행 성공");
+	// return; // 함수 무조건 탈출 
+	cc(5); // 함수에서 다른 함수를 호출 반환값 무시
+	
+	let result = cc(5); // 반환값을 변수에 저장
+	document.write(`<br> result : ${result}`);
+	document.write(`<br> result : ${cc(10)}`);
+	dd(7,8);
+	dd(7,8,9); // 추가 매개변수는 무시됨 오류 없음
+	dd(7); // 매개변수를 덜 주면 덜 주는대로 실행됨 오류 없음
+	
+	hello();
+}
+function cc(para){ // 매개변수가 있는 함수
+	let kk = para+10;
+	document.write(`<br> kk : ${kk}`);
+	return kk; // 함수의 반환값은 1개만 가능하다 
+}
+
+function dd(kbs, mbc) {
+	document.write(`<br>dd 함수에서 ${kbs}, ${mbc} 출력 `);
+}
+
+// 자바스크립트는 일급객체 지원
+function f1() { // 함수의 이름에는 함수 주소가 있다
+	document.write(`<br>안녕 f1 처리`);
+}
+function f2(func) { // 매개변수로 함수 사용
+	func(); // 매개변수의 함수를 실행
+}
+function f3(){
+	// return f1(); // 함수 실행 후의 반환 값을 반환
+	return f1; // 함수 주소 반환
+}
+function hello() {
+	f2(f1); // f2함수를 호출하여 f1 함수 주소를 전달
+	//f2(f1()); // 사용 f2 함수를 호출하며 f1 실행 후 반환 값을 사용 
+	let myFunc = f3(); // 함수의 주소값을 반환 받은 것을 변수로 저장
+	// document.write(typeof myFunc); // 함수 주소만 받아도 함수 타입이 된다
+	myFunc(); // 반환값으로 주소를 받은 함수를 실행
+	f3()(); // 반환값으로 받은 함수를 실행 
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+let count = 0;
+function aa(){
+	count+=1;
+	let imsi = count; // 함수 내 지역 변수 
+	document.write("<br>"+count+"번 수행");
+}
+aa();
+document.write("<br>다른 작업 수행");
+aa();
+document.write("<br>함수는 참조형 타입 : ", typeof aa);
+</script>
+<br>첫번째 Js 수행 후 body
+<script type="text/javascript">
+aa();
+</script>
+<br>헤드에 선언한 함수 호출<br>
+<script type="text/javascript">
+bb();
+</script>
+</body>
+</html>

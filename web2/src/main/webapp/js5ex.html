@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>짝수 배경색 노랑 구구단 테이블</title>
+</head>
+<body>
+<script type="text/javascript">
+for(let dan=2; dan<10;dan++){
+	document.write(`<table>`);
+if(dan >=2 && dan<10){
+if(dan%2===0) {
+		document.write(`<tr style="background-color: yellow"></td>`);
+}else document.write(`<tr>`);
+		document.write(`<td>${dan}단</td>`);
+	for(let i=1;i<=9;i++){
+		document.write(`<td>${dan}*${i}=${dan*i}</td>`); }
+	document.write(`</tr>`); } 
+document.write(`</table>`);
+}
+</script>
+</body>
+</html>

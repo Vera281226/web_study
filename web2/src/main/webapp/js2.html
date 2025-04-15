@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변수</title>
+</head>
+<body>
+<h2>자바스크립트에서 변수 사용법</h2>
+<script type="text/javascript">
+// 한 줄 주석 
+/* 여러 줄 주석 */
+
+// Primitive Type 원시 타입
+let aa; // 변수 선언 대문자로 변수 이름 시작 가능하고 대소문자 구분
+aa=10; // 저장되는 자료에 의해 type이 결정된다
+aa=5.6; // number type : 정수 실수 따지지 않음
+aa="good"; // string type
+aa=true; // boolean type
+aa=null; // object type
+aa= undefined;
+document.write(typeof aa,"<br>"); 
+document.write(aa,"<br>");
+
+let bb=5; // 수정 가능
+bb = 6;
+const cc =5; // 수정 불가능 (Java : final) 값을 저장 후 참조만 가능
+// cc = 6; // 수정 시 에러 발생 Uncaught TypeError: Assignment to constant variable.
+
+// 지역과 전역 변수
+// 블록 내 선언 변수는 해당 블록 내에서만 유효
+// var로 변수나 함수 선언 시 Hoisting되어 전역 변수 및 함수가 되므로 비권장되는 변수 선언 방식
+{ let dd="a"; var vv = "a";
+	{ let dd2="b";
+		{ let dd3="c";
+			{ let dd4="d"; var vv2 = "a2";
+			document.write("<br>1.",dd,dd2,dd3,dd4,vv,vv2); }		
+		document.write("<br>2.",dd,dd2,dd3,vv,vv2); }
+	document.write("<br>3.",dd,dd2,vv,vv2); }
+document.write("<br>4.",dd,vv,vv2); }
+// 백틱( ` )을 사용해 템플릿 문자열 처리
+let str = "hi";
+let str2 = "james";
+document.write("<br>아침인사", str, " ", str2, " 성공");
+document.write(`<br>아침인사 ${str} ${str2} 성공`);
+</script>
+</body>
+</html>

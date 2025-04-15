@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 처리</title>
+<script type="text/javascript">
+function func() {
+	document.getElementById("show").innerText = "전통적인 이벤트 처리";
+}
+let a=10;
+let b={ // 익명함수 2개를 가지는 클래스 객체 b 생성
+		funcNew:function(){
+			document.getElementById("show").innerText = "b 객체의 메소드 처리";
+		},
+		funcNew2:function(){
+			document.getElementById("show").innerHTML = "<h2>b 객체의 멤버 처리</h2>";
+		}
+}
+</script>
+
+<script type="text/javascript">
+function aa() {
+	alert("kk");
+}
+// 모든 이벤트 처리를 JS에서 연결시켜 실행되게해주는 것이 좋다
+window.onload=function(){ // 1회용 익명함수를 사용(초기화)
+	alert("kbs");
+	const exBtn = document.getElementById("btn"); // 버튼을 읽어 변수에 기억시킴
+	exBtn.onclick = function(){ // 익명 함수로 이벤트를 장착시킴
+		document.getElementById("show").innerText = "자바스크립트를 아이디를 통한 클릭 이벤트";
+	}
+	const exBtn2 = document.getElementsByName("myBtn"); // name을 받을때는 복수일 수가 있다.
+	console.log(exBtn2.length);
+	exBtn2[0].onclick =function(){
+		document.getElementById("show").innerText = "자바스크립트를 네임을 통한 클릭2 이벤트";
+	}
+	exBtn2[1].onclick =function(){
+		document.getElementById("show").innerText = "자바스크립트를 네임을 통한 클릭3 이벤트";
+	}
+	//document.getElementById("btn4").onclick = function() {
+		//document.getElementById("show").innerText = "자바스크립트를 아이디 직접 연결을 통한 클릭4 이벤트";
+	//}
+document.getElementById("btn4").onclick = btn4Handler; // ()를 주지않아야 클릭시 실행이 된다
+//이벤트 연결 .addEventListener("이벤트 종류", 함수명);
+document.getElementById("btn5").addEventListener("click", abc); 
+}
+function btn4Handler() {
+	document.getElementById("show").innerText = "자바스크립트를 아이디 직접 연결을 통한 클릭4 이벤트";
+}
+function abc() {
+	document.getElementById("show").innerText = "자바스크립트를 아이디 직접 연결을 통한 클릭5 이벤트";
+	
+	// 이벤트 해제 : removeEventListener("이벤트 종류", 대상 함수명)
+	document.getElementById("btn5").removeEventListener("click",abc); // 이벤트가 수행 후 이벤트 연결이 해제된다
+}
+</script>
+</head>
+<!-- body onload="aa()" 바디 자체나 바디 내의 태그에는 인라인 방식 JS나 CSS 연결을 지양한다 
+대신 JS에서 onload등을 사용 -->
+<body>
+<input type="button" value="버튼" onclick="func()"><br>
+<input type="button" value="버튼2" onclick="b.funcNew()"><br> <!-- 클래스의 함수 호출 -->
+<input type="button" value="버튼3" onclick="b.funcNew2()"><br> <!-- 바디안에는 순수하게 태그를 사용하는 것이 좋다 -->
+<hr>
+<button id="btn">클릭</button>
+<button id="btn2" name="myBtn">클릭2</button>
+<button id="btn3" name="myBtn">클릭3</button>
+<button id="btn4">클릭4</button>
+<button id="btn5">클릭5</button>
+<div id="show"></div>
+</body>
+</html>

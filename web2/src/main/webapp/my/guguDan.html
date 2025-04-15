@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>구구단 출력</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("dan").onchange =() => {
+		let su = frm.dan.options[frm.dan.selectedIndex].value;
+		console.log( su);
+		addList(su);
+	}
+}
+function addList(su) {
+	let row = document.createElement("tr");
+	let dan = addDan(su);
+	row.appendChild(dan);
+	document.getElementById("myTbody").appendChild(row);
+}
+function addDan(su){
+	let col = document.createElement("td");
+	let text = document.createTextNode(su+"단\n");
+	col.appendChild(text);
+	for(i=1; i<10; i++){
+		let res = su*i;
+		text = document.createTextNode("\n"+su+"*"+i+"=");
+		col.appendChild(text);
+		text = document.createTextNode(res);
+		col.appendChild(text);	
+	}
+	return col;
+}
+function clsFunc() {
+	let target = document.getElementById("myTbody");
+	while(target.hasChildNodes()) target.removeChild(target.childNodes[0]);
+}
+</script>
+</head>
+<body>
+<form action="#" name="frm">
+출력할 숫자 선택:
+<select name="dan" id="dan">
+<option value="">선택</option>
+<option value="2">2단</option>
+<option value="3">3단</option>
+<option value="4">4단</option>
+<option value="5">5단</option>
+<option value="6">6단</option>
+<option value="7">7단</option>
+<option value="8">8단</option>
+<option value="9">9단</option>
+</select>
+<button name="del" id="del" onclick="clsFunc()">삭제</button>
+</form>
+<div id="header"></div>
+<table id="myTable">
+<tbody id="myTbody">
+</tbody>
+</table>
+</body>
+</html>

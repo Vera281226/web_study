@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AJAX test</title>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btn").onclick = funcJs;
+	document.querySelector("#btn2").onclick = funcFetch;
+	document.querySelector("#btn3").onclick = funcAsync;
+	document.querySelector("#btn4").onclick = funcAxios;
+	
+	document.querySelector("#btnApi").onclick = funcApi;
+}
+let xhr;
+function funcJs() {
+	xhr = new XMLHttpRequest();
+	xhr.open("GET", "js36.json", true);
+	xhr.onreadystatechange = () => {
+		if(xhr.readyState===4 && xhr.status === 200){
+			let datas = xhr.responseText;
+			let parseData = JSON.parse(datas);
+			let str = "";
+			for(let i =0; i<parseData.sangpum.length; i++){
+				str += parseData.sangpum[i].code+" "+parseData.sangpum[i].sang+"<br>";
+			}
+			document.querySelector("#show").innerHTML = str;
+		}
+	}
+	xhr.send();
+}
+
+function funcFetch() {
+	const url = "js36.json"
+	fetch(url, {method:"GET"})
+		.then(response => {
+			if(response.status === 200){
+				return response.json();
+			}else {
+				console.log(`HTTP error : status = ${response.status}`)
+			}
+		})
+		.then(parseData => { //JSON.parse()가 된 상태
+			let str = "";
+			for(let i =0; i<parseData.sangpum.length; i++){
+				str += parseData.sangpum[i].code+" "+parseData.sangpum[i].sang+"<br>";
+			}
+			document.querySelector("#show2").innerHTML = str;
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+async function funcAsync() {
+	const url = "js36.json";
+	const response = await fetch(url);
+	const data = await response.json();
+	let str = "";
+	for(let i =0; i<data.sangpum.length; i++){
+		str += data.sangpum[i].code+" "+data.sangpum[i].sang+"<br>";
+	}
+	document.querySelector("#show3").innerHTML = str;
+}
+
+function funcAxios() {
+	const url = "js36.json";
+	axios.get(url)
+	.then(response => {
+		console.log(response.data); // 서버가 제공하는 응답 데이터
+		console.log(response.status); // HTTP 상태 코드
+		console.log(response.statusText); // HTTP 상태 메시지
+		console.log(response.headers); // HTTP 헤더 정보
+		console.log(response.config); // Axios 제공 구성 정보
+		
+		if(response.status === 200){
+				return response.data; // json()의 필요없이 data에 자동 반환되어있다
+			}else {
+				console.log(`HTTP error : status = ${response.status}`)
+			}
+	})
+	.then(parseData => { //JSON.parse()가 된 상태
+		let str = "";
+		for(let i =0; i<parseData.sangpum.length; i++){
+			str += parseData.sangpum[i].code+" "+parseData.sangpum[i].sang+"<br>";
+		}
+		document.querySelector("#show2").innerHTML = str;
+	})
+	.catch(err => {
+		console.log(err)
+	})
+}
+
+
+function funcApi() {
+	const REST_API_KEY = `ff4b26b6bdc62fb331bba0eaf6ba6f32`;
+	const bookname = document.querySelector("#book").value;
+	const query=`?query=${bookname}`;
+	fetch(`https://dapi.kakao.com/v3/search/book${query}`, {
+		method : 'get', 
+		headers: {
+			Authorization:`KakaoAK ${REST_API_KEY}`,
+		},
+	})
+	.then(response => {
+		return response.json();
+	})
+	.then(data => {
+		console.log(data.documents);
+		let str ="";
+		for(let i=0; i<data.documents.length; i++){
+			str+= data.documents[i].title+", "+
+			data.documents[i].authors+", "+
+			data.documents[i].price+", "+
+			data.documents[i].publisher+", "+"<br>"
+		}
+		document.querySelector("#showApi").innerHTML = str;
+	})
+	.catch(err => console.log(err))
+}
+
+</script>
+</head>
+<body>
+<button id="btn">기본적 방법</button><br>
+<button id="btn2">fetch 방법</button><br>
+<button id="btn3">async 방법</button><br>
+<button id="btn4">axios 방법</button><br>
+Kakao 도서검색 API 사용<br>
+<input type="text" id="book" value="자바"><br>
+<button id="btnApi">도서검색(fetch)</button>
+<hr>
+<div id="show"></div>
+<div id="show2"></div>
+<div id="show3"></div>
+<div id="show4"></div><br>
+<div id="showApi"></div><br>
+<div id="showApi2"></div><br>
+</body>
+</html>

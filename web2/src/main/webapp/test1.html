@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+addEventListener("submit", event => {
+		event.preventDefault();
+		let userid = document.querySelector("#id").value;
+		let passwd = document.querySelector("#pwd").value;
+		
+		alert(formCheck(userid, passwd));
+		});
+		
+function formCheck(userid, passwd) {
+		if(userid != "tom" && passwd != "111") return "로그인 실패";
+		else return "로그인 성공";		
+		}
+}
+</script>
+</head>
+<body>
+<form action="aa.html" method="get" onsubmit="return false">
+아이디 : <input type="text" id = "id" name = "id"><br>
+비밀번호 : <input type="text" id = "pwd" name = "pwd"><br>
+<input type="submit" value="로그인">
+</form>
+</body>
+</html>

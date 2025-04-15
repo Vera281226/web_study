@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>조건 판단문</title>
+</head>
+<body>
+<script type="text/javascript">
+const ir = "tom";
+if (ir==="tom") document.write("맞음")
+else document.write("<br>틀림")
+
+let su = 20;
+if(su%2===0) document.write("<br>짝수")
+else document.write("<br>홀수")
+
+// let jumsu = +prompt("점수 입력","80"); // 실행 도중 키보드로 값 얻기
+let jumsu = 90;
+if(jumsu>=70)
+	if (jumsu>=90) document.write("<br><span style='color:blue';>90 이상</span>")
+	else if(jumsu>=80) document.write("<br><b>80 이상<b>")
+	else document.write("<br>70 이상")
+else document.write("<br>70 미만")
+</script>
+<script type="text/javascript">
+let hakjum="A";
+switch (hakjum) {
+case "A":
+	document.write("<br>매우 우수");
+	break;
+case "B":
+	document.write("<br>우수");
+	break;
+case "C":
+	document.write("<br>저조");
+	break;
+case "D":
+default:
+	document.write("<br>기타");
+}
+</script>
+</body>
+</html>

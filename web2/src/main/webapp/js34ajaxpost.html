@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>POST 방식</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnGet").onclick = getFunc;
+	document.querySelector("#btnPost").onclick = postFunc;
+}
+let xhr;
+function getFunc() {
+	let irum = frm.name.value;
+	let nai = frm.age.value;
+	
+	xhr = new XMLHttpRequest();
+	let fname="js34getpost.jsp?irum="+irum+"&nai="+nai;
+
+	xhr.open("GET", fname, true);
+	xhr.onreadystatechange = () => {
+		if(xhr.readyState === 4 && xhr.status === 200) {
+			process();
+		}
+	}
+	xhr.send();
+}
+function process() {
+}
+function postFunc() {
+	let irum = frm.name.value;
+	let nai = frm.age.value;
+	
+	xhr = new XMLHttpRequest();
+	let fname="js34getpost.jsp";
+
+	xhr.open("POST", fname, true);
+	xhr.onreadystatechange = () => {
+		if(xhr.readyState === 4 && xhr.status === 200) {
+			process();
+		}
+	}
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xhr.send("?irum="+irum+"&nai="+nai); // body에 포함되어 전송
+}
+</script>
+</head>
+<body>
+<form name="frm">
+이름 : <input type="text" name="name" value="tom"><br>
+나이 : <input type="text" name="age" value="33"><br>
+<input type="button" value="get 방식" id="btnGet">
+<input type="button" value="Post 방식" id="btnPost">
+</form>
+</body>
+</html>

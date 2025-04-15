@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 처리</title>
+<script type="text/javascript">
+let ourFunc = () => {
+	console.log(`ok`); // 사용자 정의 이벤트 처리 함수
+	let dateTime = "2025-2-28";
+	let arrData = dateTime.split('-');
+	console.log(`${arrData[0]}년 ${arrData[1]}월 ${arrData[2]}일`)
+}
+</script>
+</head>
+<body>
+<a href="https://www.naver.com">네이버</a><br>
+<a href="javascript:ourFunc()">이벤트 처리 함수 호출</a> <!-- a 태그로 자바스크립트 호출 --> <br>
+<input type="button" value="이벤트 처리 함수 호출 2" onclick="ourFunc()"> <!-- onclick = 이벤트 핸들러 --> <br>
+<button onclick="ourFunc()">이벤트 처리 함수 호출 3</button> <!-- 이게 더 나은거같다 -->
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>반복문</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+<script type="text/javascript">
+for(let a=1; a<=5; a++){
+	document.write("a는 "+a+"<br>");
+}
+// document.write("a는 "+a+"<br>"); // Uncaught ReferenceError: a is not defined 에러 발생
+
+for(var b=1; b<=10; b+=2){ 
+	document.write("b는 "+b+"<br>");
+}	document.write("b는 "+b+"<br>"); // b 변수가 전역 변수가 되어서 에러가 발생하지 않음
+
+//다중 for 문
+for(let c=1; c<=3; c++){
+	document.write("c는 "+c+"&nbsp;&nbsp;");
+	for(let d=1; d<=4; d++){
+		document.write("d는 "+d+"&nbsp;&nbsp;");
+	}
+	document.write("<br>");
+}
+// 구구단 출력
+//let dan = +prompt("단 입력","2");
+/* if(isNaN(dan)) { // Not a Number
+	alert("숫자만 허용"); // 1회성 메시지
+}
+else if(dan >=2 && dan<10){
+		document.write(`${dan}단<br>`);
+	for(let i=1;i<=9;i++){
+		document.write(`${dan}*${i}=${dan*i}<br>`);
+	}
+}
+else alert("2에서 9사이 정수만 허용"); */
+
+//continue break
+
+for(let k=1; k<=10; k++){
+	if(k===3) continue;
+	document.write(k+" ");
+	if(k===7) break;
+}
+</script>
+<table>
+<tr>
+<td>>
+
+
+</td>
+</tr>
+</table>
+</body>
+</html>

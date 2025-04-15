@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery 셀렉터 연습</title>
+<style type="text/css">
+.korea{
+font-size : 30px;
+font-family : 궁서;
+font-style : italic;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+// window.onload = () => {} // 모든 파일을 읽어야함 텍스트로만 된 HTML이라면 jquery랑 속도가 똑같다
+//$() = Factory 함수 - 문서를 객체화함	 jQuery()와 동일함 다른 라이브러리 등에서 $()를 사용할 경우 사용해야함
+// jQuery(document).ready(()=>{  // 문서 로딩이 완료 되면(텍스트만 먼저 읽고 실행)
+	// 태그내 태그명(요소), 속성(클래스, 아이디), 값
+//	});
+$(()=>{ // 더 줄여줄 수도 있다.
+	$("p").css("border", "1px solid #ff0000"); // 요소 선택
+	$(".my").css("border", "1px dotted cyan") // 클래스 선택
+	jQuery("div div#content").css("background-color","yellow");
+	$("span > i ").css("color", "red").css("font-size","20px"); // method chain
+	$("strong#kor").css("color", "orange").addClass("korea"); // css를 따로 가져와 사용할 수도 있다
+	$("div > a[target]") // 태그의 속성은 이렇게 써준다
+		.css("background-color","silver")
+	$("div > a[href!='https://korea.com']").css("font-size","30px") // !=를 주면 부정이 된다
+	
+	// 셀렉터에 정규 표현식을 사용할 수 있다.
+	$("div[id^='sb']").css("background-color","gold") // id 속성값이 sb로 시작되는 것
+	$("div[id$='c']").css("background-color","green") // 마지막 글자가 c로 끝나는 것
+	$("a[href*='daum']").css("color","red").css("font-size", "50px") // href 속성 값에 daum이 포함되는 것
+	// 실행 중 요소 추가
+	
+	// 특정 요소 앞에 요소 추가
+	// $("b").prepend("<h2>요소추가(기본 요소 앞)</h2>");
+	$("<h2>요소추가(기본 요소 앞)</h2>").prependTo("b");
+	
+	// 특정 요소 뒤에 요소 추가
+	// $("b").append("<h2>요소추가(기본 요소 뒤)</h2>");
+	$("<h2>요소추가(기본 요소 뒤)</h2>").appendTo("b");
+	
+	// 요소 수만큼 반복 추가 처리
+	let ss = "";
+	$("li").each(() => { 
+		// ss += $(this).text() + "<br>"; // this. 현재 반복 대상 요소 text() = innerText
+		ss += $(this).html() +"<br>";
+	});
+	
+	$("#show").html(ss);
+});
+</script>
+</head>
+<body>
+<pre>
+HTML의 JS 작업을 간소화해 생산을 향상시킨다.
+jQueryUI 플러그인을 사용할 수 있다. 
+
+$(document).ready(function() { 
+	
+})
+</pre>
+<h2>셀렉터 연습</h2>
+<p class="my">봄</p>
+<p>따스함</p>
+<div>
+	<div id="content">3월 중순</div>
+</div>
+<span><i>월요일 아침</i></span>
+<span>미세먼지 약간</span>
+<br>
+<strong id="kor">대한민국</strong>
+<hr>
+<div id="sbs">
+	<a href="https://naver.com">naver target X</a>
+	<a href="https://naver.com" target="_blank">naver target O</a>
+	<a href="https://korea.com">korea target X</a>
+	<a href="https://korea.com" target="_blank">korea target O</a>
+</div>
+<br>
+<div id="mbc">
+	<a href="https://daum.net">daum target X</a>
+	<a href="https://daum.net" target="_blank">daum target O</a>
+</div>
+<hr>
+<b>실행 도중 문서에 요소를 추가</b>
+<h3>운영체제 목록</h3>
+<ul>
+	<li><i>윈도우</i></li>
+	<li>리눅스</li>
+	<li>맥 OS</li>
+</ul>
+<div id="show"></div>
+</body>
+</html>

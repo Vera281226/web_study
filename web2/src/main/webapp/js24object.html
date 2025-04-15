@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체</title>
+<script type="text/javascript">
+// 객체 선언 방법
+// Object는 원시 타입과 달리 다양한 데이터를 가질 수 있다.
+window.onload = () => {
+	// 1. new로 객체 생성자 사용
+	let obj = new Object(); // let obj = {}; 와 동일
+	obj.irum = "홍길동";
+	obj.nai = 22;
+	obj.juso = "강남구 테헤란로 123";
+	obj.getJuso = () => { return obj.juso };
+	
+	console.log(obj);
+	console.log(typeof(obj),obj.toString());
+	
+	let str = obj.irum+"님의 나이는 " +obj.nai+", 주소 : "+obj.getJuso();
+	document.getElementById("disp").innerHTML = str;
+	
+	let obj2=obj; 
+	obj.irum="고길동";
+	let str2 = obj2.irum+"님의 나이는 " +obj2.nai+", 주소 : "+obj2.getJuso();
+	document.getElementById("disp2").innerHTML = str2; // 얕은 복사 
+	
+	// 2. literal(json 형태 데이터)을 사용한 객체 선언
+	// JavaScript Object Notation은 객체 문법으로 구조화된 데이터를 표현하기 위한 문자 기반의 표준
+	// 웹 애플리케이션에서 데이터를 전송할 때 일반적으로 사용 
+	let myObj = {  // key:value 형태의 property로 구성
+		irum:"한국인", nai:33,
+		showNai:function(msg){return this.nai+msg;} // this 쓸수 있음
+		
+	}
+	console.log(typeof(myObj),myObj);
+	
+	// this의 처리 시점
+	// this 는 바인딩이 객체가 생성되는 시점에 결정된다
+	// 일반 함수를 호출할 때는 this 가 최상위 객체를 가리킴
+	// 메소드를 호출할 때는 호출된 객체를 가리킴
+	// new 를 사용하여 객체를 생성한 경우에는 객체를 가리킴
+	let str3 = myObj.irum+"님의 나이는 "+myObj.showNai("살"); // myObj.nai = myObj["nai"]
+	document.getElementById("disp3").innerHTML = str3;
+	
+	// 중첩 객체
+	let myFriend = {
+			name:"신기루", age:26, 
+			otherFriend:{
+				name:"박치기", job:"프로그래머"
+			}
+		}
+	let str4 = myFriend.name+"님의 나이는 "+myFriend.age+" "+myFriend.otherFriend.job;
+	document.getElementById("disp4").innerHTML = str4;
+	
+	/*// literal을 이용한 미니 계산기 작성
+	let calculator = {
+			sum(){
+				return this.a + this. b;
+			},
+			mul(){
+				return this.a*this.b;
+			},
+			read(){
+				this.a = +prompt('첫번째 숫자 : ', 1)
+				this.b = +prompt('두번째 숫자 : ', 2)
+			}
+	};
+	calculator.read();
+	console.log(calculator.sum());
+	console.log(calculator.mul());*/
+	
+	// 생성자 함수를 사용한 객체
+	function Person(name) {
+		// this = {}; 기본적으로 생성됨 자바의 생성자와 같은 역할
+		this.name = name; // Person 객체에 name이라는 public property를 정의
+		this.setName = newName => this.name=newName; // 메소드를 정의할 때는 익명함수를 사용
+	}
+
+	let pp = new Person("손오공"); // 생성자 함수를 통해 name값 부여
+	
+	document.getElementById("disp5").innerHTML = pp.name;
+	let pp2 = new Person();
+	document.getElementById("disp6").innerHTML = pp2.name;
+	pp2.setName("사오정")
+	document.getElementById("disp7").innerHTML = pp2["name"];
+	
+	// 생성자 함수를 이용한 미니 계산기
+	/*function Calculator2() {
+		this.read=function(){
+			this.a = +prompt('첫번째 숫자 : ', 1)
+			this.b = +prompt('두번째 숫자 : ', 2)
+		}
+		this.sum =function() {
+			return this.a + this. b;
+		}
+		this.mul =function() {
+			return this.a*this.b;
+		}
+	};
+	let calculator2 = new Calculator2();
+	calculator2.read();
+	console.log(calculator2.sum());
+	console.log(calculator2.mul()); */
+	// 참고 : 배열 객체 생성
+	let arr = []; // 기본 배열 생성
+	let arr2 = new Array(); // Array 생성자 함수 사용
+	console.log(arr.constructor);
+	console.log(arr2.constructor);
+	
+	arr.push("kbs");
+	arr.push("sbs");
+	arr.push("mbc");
+	arr.push("ytn");
+	arr.sort(); // 오름차순
+	arr.reverse(); // 내림차순
+	console.log("arr 크기 : ",arr.length)
+	for (i in arr) {
+		console.log(arr[i]);
+	}
+	arr.pop(); 
+	for (i in arr) {
+		console.log(arr[i]);
+	}
+}
+</script>
+</head>
+<body>
+<!-- 다양한 방법으로 객체 생성 후 처리 -->
+<div id="disp"></div>
+<div id="disp2"></div>
+<div id="disp3"></div>
+<div id="disp4"></div>
+<div id="disp5"></div>
+<div id="disp6"></div>
+<div id="disp7"></div>
+<div id="disp8"></div>
+<div id="disp9"></div>
+</body>
+</html>

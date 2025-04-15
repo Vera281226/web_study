@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.querySelector("#btnOk").onclick = showFunc;
+	document.querySelector("#btnOk2").onclick = showFunc2;
+}
+
+let xhr;
+
+function showFunc() {
+	xhr = new XMLHttpRequest();
+	xhr.open("GET", "./js33dbjson.jsp", true);
+	xhr.onreadystatechange = () => {
+		if(xhr.readyState === 4 && xhr.status === 200) {
+			processFunc();
+		}
+	}
+	xhr.send();
+}
+function showFunc2() {
+	fetch("js33dbjson.jsp")
+		.then(response => {
+			if(!response.ok) //.ok로 true나 false를 반환
+			{	throw new Error(`HTTP Error : ${reponse.status}`);}
+			return response.json();
+		})
+		.then(parseData => {
+			processFunc2(parseData);
+		})
+		.catch(error => console.log("fetch error :", error))
+}
+
+function processFunc() {
+	let datas = xhr.responseText;
+	let parseData = JSON.parse(datas);
+	let str = "";
+	for(let i = 0; i<parseData.sangpum.length; i++) {
+		str += 
+			parseData.sangpum[i].code + " " +
+			parseData.sangpum[i].sang + " " +
+			parseData.sangpum[i].su + " " +
+			parseData.sangpum[i].dan + "<br>" ;
+	}
+	document.querySelector("#disp").innerHTML = str;
+}
+function processFunc2(parseData) {
+
+}
+</script>
+</head>
+<body>
+<button id="btnOk">상품 정보</button>
+<button id="btnOk2">상품 정보(fetch)</button>
+비동기 이해용 입력 박스 : <input type="text">
+<br>
+<div id="disp"></div>
+<div id="disp2"></div>
+</body>
+</html>

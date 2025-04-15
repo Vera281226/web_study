@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>돔 예제</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("sel").onchange =() => {
+		let sangpum = comment = "";
+		let sang = frm.sel.options[frm.sel.selectedIndex].text; // 선택한 값의 내부 텍스트 값을 sang에 저장 시킴
+		let sel = frm.sel.options[frm.sel.selectedIndex].value; // 선택한 값의 밸류 값을 sel에 저장시킴
+		console.log(sang," ",sel);
+		
+			sangpum = sang;
+		if(sel === '1000') {
+			comment = "볼펜은 모나미";
+		}else if(sel === '2000') {
+			comment = "내 일상을 잘 정리해 둠";
+		}else if(sel === '3000') {
+			comment = "움직임이 예술";
+		}
+		addRowFunc(sangpum, comment); // 테이블에 tr 추가
+	}
+}
+function addRowFunc(sangpum, comment) {
+	// tr 생성
+	let row = document.createElement("tr");
+	let col = addColFunc(sangpum);
+	row.appendChild(col); // <tr> 태그 안에 작업한 <td> 태그 삽입
+	col = addColFunc(comment);
+	row.appendChild(col);
+	document.getElementById("myTbody").appendChild(row);
+}
+function addColFunc(data) {
+	// td 생성
+	let col = document.createElement("td");
+	let text = document.createTextNode(data);
+	col.appendChild(text);
+	return col;
+}
+</script>
+</head>
+<body>
+<form action="#" name="frm">
+상품 선택:
+<select name="sel" id="sel">
+<option value="">선택</option>
+<option value="1000">볼펜</option>
+<option value="2000">노트</option>
+<option value="3000">마우스</option>
+</select>
+</form>
+<br>
+<div id="header"></div>
+<table id="myTable">
+	<tbody id="myTbody">
+	<!-- 내부를 DOM을 이용해 작성 -->
+	</tbody>
+</table>
+</body>
+</html>

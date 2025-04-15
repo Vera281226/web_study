@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>화살표 함수</title>
+</head>
+<body>
+<script type="text/javascript">
+// 기존 함수 선언보다 쉬운 문법으로 함수 작성
+// let  함수명 = (매개변수) => {실행문}
+let sum = (a, b) => a+b;
+document.write(`sum : ${sum(2,3)}`);
+
+// let double = function(n) {return n*2;}
+let double = n => n*2;
+document.write(`<br>double : ${double(3)}`);
+
+// 매개 변수가 없는 경우 ( ) 생략 불가
+let sayHi = () => document.write(`<br>Hello`);
+sayHi();
+
+let age = 33; 
+// 삼항연산자를 섞은 화살표 함수
+let welcome = (age<30)?() => document.write(`<br>안녕`):document.write(`<br>반가워`);
+
+let sumFunc = (a, b) => {
+	let imsi = a+b;
+	return imsi;
+} // 본문이 복수인 경우 값 반환시 return 키워드 사용
+document.write(`<br>${sumFunc(3, 4)}`);
+
+// Callback 처리 
+function func(...para) {
+	document.write(`<br>매개변수 크기 : ${para.length}, ${para}`);
+	for(let i=0; i<para.length; i++) {
+		document.write(`<br> ${para[i]}`);
+	}
+	para.forEach(function(obj){ // 배열을 순회해서 각 요소를 콜백 함수로 처리하기 위한 함수
+		document.write(`<br>${obj}`);
+	});
+	para.forEach(obj => document.write(`<br>${obj}`));
+}
+func('a','b', 'c','d');
+
+// 콜백 지원 내장 함수
+// setInterval() : 일정 주기로 함수를 반복 실행
+// setInterval(() => document.write(`<br>${new Date()}`),2000); 
+// setTimeout() : 지정 시간 후에 특정 함수를 한번 실행 
+// setTimeout(() => document.write(`<br>3초 후 실행`),3000); 
+
+// 재귀 함수
+
+</script>
+</body>
+</html>

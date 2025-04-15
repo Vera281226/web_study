@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax 연습</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("btnOk").onclick = startFunc
+	document.getElementById("btnOk2").onclick = startXML
+	document.getElementById("btnOk3").onclick = startJson
+	document.getElementById("btnOk4").onclick = startJson2
+	document.getElementById("btnOk5").onclick = startJson3
+}
+let xhr;
+function startFunc() { // JS의 XMLHttpRequest 클래스를 이용하는 방식 
+	xhr = new XMLHttpRequest(); // 객체생성
+	// xhr.open("GET", "js31text.txt", true); // "요청방법","대상파일",비동기(true)
+	xhr.open("GET", "js31csv.txt", true);
+	xhr.onreadystatechange = function() { // 비동기
+		// alert(xhr.readyState); // readyState : 통신 상태를 0부터 4까지 5단계의 단계로 확인한다
+	    if (xhr.readyState === 4){ // 통신이 정상
+	    	// alert(xhr.status); // 파일 상태가 200 = 정상일때 작업을 시작할 수 있도록 하게 한다
+	    	// alert(xhr.status === 200);
+	    	if(xhr.status === 200) {
+	      	process();
+	    	}
+	  	  }
+	    }
+	xhr.send()
+	}
+function process() {
+	// 텍스트파일 자료 읽어 출력
+	let data = xhr.responseText;
+	
+	//document.querySelector("#disp").innerText = data ;
+	// let imsi = document.createTextNode(data);
+	// document.querySelector("#disp").appendChild(imsi);
+	
+	// csv 파일 자료 읽어 출력
+	
+	let rowData = data.split(String.fromCharCode(13)); // ASCII 13 = CR
+	let str = "";
+	for(let i=0; i<rowData.length; i++){
+		let colData=rowData[i].split(",");
+		for(let j=0; j<colData.length; j++){
+			str += colData[j]+" ";
+		}
+		str += "<hr>";
+	}
+	document.querySelector("#disp").innerHTML = str;
+};
+function startXML() { // 서버에서 XML 문서 읽기
+	xhr = new XMLHttpRequest(); // 객체생성
+
+	xhr.open("GET", "js31.xml", true);
+	xhr.onreadystatechange = function() { // 비동기
+
+	    if (xhr.readyState === 4){ // 통신이 정상
+
+	    	if(xhr.status === 200) {
+	      	processXml();
+	    	}
+	  	  }
+	    }
+	xhr.send()
+}
+function processXml() {
+	// Xml 객체 읽기 - DOM 사용 가능
+	let data = xhr.responseXML
+	let itemNode = data.getElementsByTagName("item");
+	let codeNode = data.getElementsByTagName("code");
+	let sangNode = data.getElementsByTagName("sangpum");
+	
+	let str = "";
+	for(let i=0; i<itemNode.length; i++){
+		str += codeNode[i].childNodes[0].nodeValue+" ";
+		str += sangNode[i].childNodes[0].nodeValue+" ";
+		str += codeNode[i].getAttribute("price")+"<br>";
+		
+	}
+
+	document.querySelector("#disp").innerHTML = str;
+}
+function startJson() {
+	xhr = new XMLHttpRequest(); // 객체생성
+
+	xhr.open("GET", "js31.json", true);
+	xhr.onreadystatechange = function() { // 비동기
+
+	    if (xhr.readyState === 4){ // 통신이 정상
+
+	    	if(xhr.status === 200) {
+	      	processJson();
+	    	}
+	  	  }
+	    }
+	xhr.send()
+}
+function processJson() {
+	let data = xhr.responseText;
+	let parseData = JSON.parse(data); // 문자열을 JSON 타입으로 객체화 - 배열 처리 가능
+	 // JSON 타입의 대표명을 주의해야 한다 
+	let str = "";
+	for(i=0;i<parseData.sangpum.length; i++){
+		str += parseData.sangpum[i].code+" "+parseData.sangpum[i].sang+"<br>";
+	}
+	document.querySelector("#disp").innerHTML = str;
+}
+function startJson2() {
+	const url = "js31.json";
+	//fetch 내부적으로 Promise 객체를 사용해 resolve reject를 반환한다.
+	fetch(url)
+		.then(res => {
+		if(res.status === 200){
+			return res.json();
+	}else{
+		console.error(`HTTP error! status=${res.status}`);
+	}	
+	}).then(jsonData=>{
+	processJson2(jsonData);
+	}).catch(err=>{
+		console.log(err);
+	});
+}
+function processJson2(jsonData) {
+	 // 문자열을 JSON 타입으로 객체화 - 배열 처리 가능
+	 // JSON 타입의 대표명을 주의해야 한다 
+	let str = "";
+	for(i=0;i<jsonData.sangpum.length; i++){
+		str += jsonData.sangpum[i].code+" "+jsonData.sangpum[i].sang+"<br>";
+	}
+	document.querySelector("#disp").innerHTML = str;
+}
+async function startJson3() {
+	const url = "js31.json";
+	const response = await fetch(url);
+	const data = await response.json();
+	processJson2(data);
+}
+</script>
+</head>
+<body>
+<button id="btnOk">Ajax 원리 이해</button><br>
+<button id="btnOk2">XML 읽기</button><br>
+<button id="btnOk3">JSON 읽기</button><br>
+<button id="btnOk4">JSON 읽기2</button><br>
+<button id="btnOk5">JSON 읽기3</button><br>
+<hr>
+<div id="disp"></div>
+</body>
+</html>

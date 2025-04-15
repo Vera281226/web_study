@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 종류</title>
+<script type="text/javascript">
+window.onload = () => {
+	document.getElementById("colorW").onclick = function(){
+		document.body.style.backgroundColor = "white";
+	}
+	document.getElementById("colorG").onclick = function(){
+		document.body.style.backgroundColor="#00ff00";
+	}
+//	document.getElementById("colorR").onclick = function(){
+//		document.bgColor = "rgb(100%,0%,0%)";
+//	}
+	document.querySelector("#colorR").onclick = () => {
+		//document.bgColor = "rgb(100%,0%,0%)";
+		document.body.style.backgroundColor="#ff0000";
+	}
+	document.querySelector(".hello").onclick = function() {
+		document.querySelector("#show").innerText = "안녕하세요";
+	}
+	document.querySelector("#calc").ondblclick = function() {
+		let ss = `연산결과는 ${10+5}`
+		document.querySelector("#show").innerText = ss;
+	}	
+	document.querySelector("#irum").onmouseover = function() {
+		document.querySelector("#show").innerHTML = "<h2>난 신기해 라고해</h2>";
+	}
+	document.querySelector("#irum").onmouseout= function() {
+		document.querySelector("#show").innerHTML = "";
+	}
+	// a tag : click 이벤트가 기본 등록되어 있음 기본 이벤트 해제
+	
+	document.querySelector("#daum").onclick = function(event) {
+		event.preventDefault(); // 해당 태그의 고유 이벤트 해제
+		console.log(event);
+		// 다른 기능 구현해보기
+		console.log(`x좌표 : ${event.x} y좌표 : ${event.y}`);
+	} 
+	// select 태그
+	const sdata = document.querySelector("#sel");
+//	sdata.onclick = function() {
+//		document.querySelector("#show").innerHTML = sdata.value;
+//		console.log(sdata.value); // 클릭으로 수행할 경우 값을 선택하려고 클릭한 값을 수행 후 선택된 것을 수행 
+//	}
+	sdata.onchange = function() {
+		document.querySelector("#show").innerHTML = sdata.value;
+		console.log(sdata.value); // onchange로 변화했을 시한번 출력되게 됨
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" value="흰색" id="colorW">
+<!-- 
+<input type="button" value="녹색" id="colorG">
+<input type="button" value="적색" id="colorR">
+ -->
+ <span id="colorG">녹색</span>
+ <b id="colorR" style="border:1px solid black; cursor: pointer;">적색</b>
+<!-- 보통 문자열 자체에 이벤트를 걸어버릴 수 있다 버튼을 쓰는 이유는 사용자가 편하게 인식하도록 표시한 것-->
+<hr>
+<button id="hello" class="hello">인사하기(click)</button>
+<button id="calc">계산하기(double click)</button>
+<button id="irum">이름알기(mouse over)</button>
+<br>
+<a href="https://m.daum.net" id="daum">앵커 태그 클릭</a><br>
+<select id="sel">
+	<option value="프로그래머">프로그래머</option>
+	<option value="웹퍼블리셔">웹퍼블리셔</option>
+	<option value="프로게이머">프로게이머</option>
+</select>
+<hr>
+<h1 id="show">출력 장소</h1>
+</body>
+</html>

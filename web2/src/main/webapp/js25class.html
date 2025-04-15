@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클래스</title>
+</head>
+<body>
+<!-- class 키워드 사용으로 기존의 prototype 기반의 클래스 작성보다 좀 더 명료한 클래스 작성이 가능 -->
+<script type="text/javascript">
+class Class{
+	addr="서울"; // 멤버 변수는 let을 쓰지 않는다
+	// 멤버 변수 name은 생성자로 값을 받는 경우 변수 선언 생략 가능
+	constructor(name) {
+		this.name=name;
+	}
+	sayHi(){ // 접근 지정자는 없다
+		document.write("<br>",this.name);
+		document.write("<br>",this.addr);
+		
+		let msg = "프로그래머"; // 지역 변수는 let을 적는다
+		return `<br>이름은 ${this.name} ${this.addr} ${msg}`;
+	}
+}
+let clas = new Class("신기해");
+document.write(clas.sayHi());
+document.write("<br> 이름은 ",clas.name);
+document.write("<br> 주소는 ",clas.addr);
+// 새로운 객체 생성
+let clas2 = new Class("백두산");
+document.write(clas2.sayHi());
+</script>
+<hr>
+<script type="text/javascript">
+// 새로운 클래스 생성
+class Class2{
+	subject = "자바스크립트";
+	// 생성자 오버로딩은 없다 if문 등으로 비슷하게 구현할 수는 있다
+	constructor(name, age) {
+		this.name=name; // 생성자에서 멤버변수 값 선언과 치환
+		this.age=age;
+	}
+	printData() {
+		document.write(`<br>이름은 ${this.name}이고 나이는 ${this.age}`);
+		document.write(`<br>수강 과목은 ${this.subject}`);
+	}
+
+}
+let clas3 = new Class2("백두산",44);
+clas3.printData();
+document.write("<br> 이름은 ",clas3.name);
+document.write("<br> 나이는 ",clas3.age);
+
+clas3.subject = '파이썬';
+document.write("<br> 과목은 ", clas3.subject);
+class Class3{
+	#name; // private 멤버 변수
+	age; // private 멤버 변수
+	static addt = "서울"; // static 값
+	
+	constructor(name, age) {
+		this.#name=name; // # 조심
+		this.age=age;
+	}
+	showData() {
+		document.write("<br>",this.#name, this.age);
+	}
+}
+const person = new Class3('공기밥',23)
+document.write(person);
+document.write("<br> ",person.age);
+document.write("<br> ",person.name); // private 변수는 호출 불가능
+person.showData();
+</script>
+</body>
+</html>

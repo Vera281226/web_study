@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>함수</title>
+</head>
+<body>
+<script type="text/javascript">
+function func() {
+	document.write(`<br>난 func1이야`);
+}
+func();
+let my=func;
+my();
+
+function func2(a, b=20) { // 매개변수에 초기치를 줄 수 도있다
+	let c=a+b;
+	return c;
+	// 함수에서 return이 없거나 return; 만 한 경우에는 undefined를 반환한다
+}
+let re = func2(5,6);
+document.write(`<br> ${re}`);
+let re2 = func2("자바스크립트","만세");
+document.write(`<br> ${re2}`);
+let re3 = func2(3);
+document.write(`<br> ${re3}`);
+
+function func3() {	  // 매개변수가 선언되지 않은 경우 
+	document.write(`<br> 매개변수 개수 : ${arguments.length}`); // arguments : 예약어
+	document.write(`<br> 전달받은 변수 값 : ${arguments[0]} ${arguments[1]}`);
+}
+
+func3();
+func3(3, 4);
+func3(3, 4, 5);
+func3("good","korea"); // 문법이 느슨하다 
+
+function hap() {
+	let tot=0;
+	for(let i=0; i<arguments.length; i++) {tot += arguments[i];} return tot;
+}
+const number = 1234;
+const numberSplit = number.toInteger().split('').map(Number);
+function sumDigits(numberSplit) {
+	let result;
+	for(let i=0; i<numberSplit.length; i++) {
+		result += number[i];
+		}
+	return result;
+}
+console.log(result);
+const sum = sumDigits(numberSplit);
+console.log(sum);
+
+document.write(`<br> hap : ${hap(1,2,3,4,5,6,7,8,9)}`);
+
+// 익명 함수
+(function() {
+	document.write(`<br>함수의 이름이 없는 경우 : 주로 초기화 작업할 때 사용 1회용`);
+})();
+const test = function(n1, n2){
+	document.write(`<br>두 수의 합은 ${n1 + n2}`);
+}
+test(2, 3);
+
+// 선언적 함수(기본 함수)와 함수 표현식(익명 함수)의 차이
+// Hoisting = 인터프리터가 변수와 함수의 메모리 공간을 선언 전에 미리 할당하는 것
+func4(); // 함수를 Hoisting 한다 전역 함수 취급
+function func4() {
+	document.write(`<br> 선언적 함수 호출 (함수 객체는 메모리에 계속 존재)`);
+}
+func4();
+// kbs(); // Uncaught ReferenceError: Cannot access 'kbs' before initialization 함수 표현식은 Hoisting 되지 않는다
+let kbs=function(){
+	document.write(`<br> 함수 표현식 호출`);
+}
+kbs(); // 함수 표현식 선언 이후에 사용 가능
+
+// 중첩 함수
+function func5() {
+	function fu() {
+		document.write(`<br>fu 수행`);
+	}
+	function fu2() {
+		document.write(`<br>fu2 수행`);
+	}
+	fu();
+	fu2();
+}
+func5();
+
+function func6(a, b) {
+	function abcFunc(x){
+		return x * x;
+	}
+	return Math.sqrt(abcFunc(a)+abcFunc(b));
+}
+document.write(`<br>${func6(3, 5)}`);
+</script>
+</body>
+</html>

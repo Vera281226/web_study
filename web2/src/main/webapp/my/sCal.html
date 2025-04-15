@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	window.onload =()=>{
+	document.getElementById("res").onclick = show;
+	document.getElementById("clr").onclick = clr;
+	};
+	
+	function show(){
+	function calc() {
+	let num = parseFloat(document.getElementById("num").value);
+	let num2 = parseFloat(document.getElementById("num2").value);
+	let cal = document.querySelector('input[name="cal"]:checked');
+	if(cal.id === "+") { return num+num2; }
+	else if(cal.id === "-")  { return num-num2; }
+	else if(cal.id === "*") { return num*num2; }
+	else if(cal.id === "/") { return num/num2; }
+	else return;	
+	}
+	let result = calc();
+	document.getElementById("show").innerText = result;
+	}
+	
+	function clr() {
+		open("sCal.html","_self");
+	}
+
+</script>
+</head>
+<body>
+간단한 계산기 <br>
+숫자1 : <input type="number" id="num">
+<br>
+숫자2 : <input type="number" id="num2">
+<br>
+<input type="radio" name="cal" id="+">+
+<input type="radio" name="cal" id="-">-
+<input type="radio" name="cal" id="*">*
+<input type="radio" name="cal" id="/">/
+<br>
+<button id="res">결과보기</button> : <b id="show">결과값</b><br>
+<button id="clr">지우개</button>
+</body>
+</html>

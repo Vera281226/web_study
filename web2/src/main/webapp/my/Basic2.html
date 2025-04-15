@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function postFunc() {
+	let number = frm.number.value;
+	let name = frm.name.value;
+	
+	xhr = new XMLHttpRequest();
+
+	xhr.open("POST", "Basic2.jsp", true);
+	xhr.onreadystatechange = () => {
+		if(xhr.readyState === 4 && xhr.status === 200) {
+			process();
+		}
+	}
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xhr.send("number="+number+"&irum="+irum); // body에 포함되어 전송
+	showFunc();
+}
+function showFunc() {
+	let data = xhr.responseText;
+	let parseData = JSON.parse(data);
+	let str = "<table border='1'>";
+	for(i=0;i<parseData.jikwon.length; i++){
+		str += "<tr>";
+		str +="<td>"+parseData.jikwon[i].gogekname+"</td>"
+		str +="<td>"+parseData.jikwon[i].gogektel+"</td>"
+		str +="<td>"+parseData.jikwon[i].gogekgen+"</td>"
+		str +="</tr>";
+	}
+	str += "</table>";
+	document.querySelector("#disp").innerHTML = str;
+}
+</script>
+</head>
+<body>
+<form name="frm">
+직원정보 입력
+사번 : <input type="number" name="number">
+이름 : <input type="text" name ="name"> <button type="submit">관리고객 출력</button>
+</form>
+</body>
+</html>

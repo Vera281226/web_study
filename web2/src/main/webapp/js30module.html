@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js 모듈</title>
+</head>
+<body>
+<!-- 외부 모듈에서 export한 멤버는 현재 모듈에서 import 할수 있다 -->
+<script type="module">
+import {user} from "./js30.js";
+console.log(user);
+import {msg} from "./js30.js";
+console.log(msg," ",msg['name']+" "+msg['price']);
+import {sayHi} from "./js30.js";
+console.log(sayHi("김밥"));
+import tom from "./js30.js";
+console.log(tom);
+import {datas} from "./js30.js";
+console.log(datas);
+
+console.log(datas[0], " ", datas[1], " ", datas[2]);
+import {f1, f2} from "./js30.js";
+console.log(f1("홍길동"));
+console.log(f2("강아지"));
+
+import * as hiFunc from "./js30.js";
+console.log(hiFunc.f1("홍길동"));
+console.log(hiFunc.f2("강아지"));
+</script>
+</body>
+</html>

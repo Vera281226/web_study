@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>대화 상자</title>
+<script type="text/javascript">
+function dispData(su1, su2, op) {
+	alert(su1 +" "+ su2 +" "+ op);
+	let s1 = parseInt(su1);
+	let s2 = parseInt(su2); // 형변환으로 정수화
+	let re = "";
+	if (op==="+"){
+		re = s1 + s2;
+	}else if(op==="-"){
+	 	re = s1 - s2;
+	}else if(op==="*"){
+	 	re = s1 * s2;
+	}else if(op==="/"){
+	 	re = s1 / s2;
+	}else re = "오류"
+	alert("연산 결과 : "+re);
+}
+</script>
+</head>
+<body>
+<script type="text/javascript">
+// 대화 상자 관련 함수
+/*
+let irum = "가나다";
+let tel="111-1111";
+alert(`이름은 ${irum} \n전화는 ${tel}`); // 메시지 창, 경고 창 <br>이 아닌 \n으로 줄을 나눈다
+// 창을 닫을 때까지 실행 일시정지
+console.log('alert 창 수행 후 처리됨');
+document.write("<br>alert 창 수행 후 처리됨");
+let result = confirm("계속할까요?\n버튼 선택"); // 확인 창
+document.write("<br>선택 값 : ", result); // 버튼 선택으로 true, false 값을 가진다
+if(result===true) window.close(); // Scripts may close only the windows that were opened by them.
+let juso=prompt("사는 곳 입력","서울"); // 입력 창
+document.write("<br>주소는 : ", juso);*/
+// 두 수와 연산자를 입력받아 disp 함수를 호출 하여 연산 결과 출력하기
+
+let data=prompt("계산할 수식 입력","0 + 0");
+let arr = []; // 두 수와 연산자를 분리해 기억하기 위함
+for(let i=0; i<3; i++){
+	arr = data.split(' ');
+}
+dispData(arr[0],arr[2],arr[1]);
+</script>
+</body>
+</html>
