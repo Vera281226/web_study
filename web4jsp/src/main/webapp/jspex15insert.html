@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+// 자동 테이블내 튜플 번호 증가 부여는 DBMS별로 문법이 매우 다르므로 따로 프로그램화해서 사용하는 것이 좋다.
+// 코드 수정이 필요하면 하면 된다. 이러한 작은 프로그램 도구는 중요하니
+window.onload = () => {
+	document.querySelector("#btnIns").onclick = func;
+}
+function func() {
+	if(insFrm.sang.value === "") {alert("상품명 입력");
+// alert는 개발자의 확인용이므로 에러페이지나 다이얼로그 박스를 사용해서 표출해줘야한다. 오류검사 정규표현식 사용 권장 
+	insFrm.sang.focus();
+	return;
+	}
+	insFrm.submit();
+}
+</script>
+</head>
+<body>
+<form action="jspex15ins.jsp" method="post" name="insFrm">
+품명 : <input type="text" name="sang"><br>
+수량 : <input type="text" name="su"><br>
+단가 : <input type="text" name="dan"><br>
+<input type="button" id="btnIns" value="상품 등록">
+</form>
+</body>
+</html>

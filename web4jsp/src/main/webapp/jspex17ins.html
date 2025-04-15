@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글쓰기</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#btnIns").click(function() {
+		if($("#name").val() === ""){
+			alert("작성자 입력");
+			return;
+		}else if(isNaN($("#sang").val())===false){
+			alert("작성자 이름은 문자만 허용")
+			$("#name").val("");
+			return;
+		}
+		$("#frm").submit();
+	});
+		$("#btnList").bind("click", listFunc);
+	});
+
+function listFunc() {
+	location.href = "jspex17guestbook.jsp"
+}
+</script>
+</head>
+<body>
+<form action="jspex17ins.jsp" method="post" id="frm">
+	작성자 : <input type="text" name="name" id="name"><br>
+	제목 : <input type="text" name="title" id="title"><br>
+	내용 : <input type="text" name="content" class="content" width="500" height="500"><br>
+	<input type="button" value="글쓰기" id="btnIns">
+	<input type="reset" value="쓰기취소">
+	<input type="button" value="방명록보기" id="btnList">
+</form>
+</body>
+</html>
